@@ -1,15 +1,15 @@
 import { useState } from "react"
 
-export default function Taskform() {
-    const [task, setTask] =  useState('');
+export default function Taskform({addTask}) {
+    const[task, setTask] = useState('');
     const [priority, setPriority] = useState('medium');
     const [category, setCategory] = useState('general');
 
-    const handlesubmit = () => {
-        e.preventDefault();
+    const handlesubmit = (e) => {
+        e.preventDefault(); //refresh
         addTask({text: task, priority, category, completed: false});
 
-        // reset
+        //reset
         setTask('');
         setPriority('medium');
         setCategory('general');
@@ -18,7 +18,8 @@ export default function Taskform() {
     return(
         <form onSubmit={handlesubmit}>
             <div>
-                <input type="text" placeholder="Enter the task" value={task}
+                <input type="text" placeholder="Enter the task" 
+                value={task}
                 onChange={(e) => setTask(e.target.value)}/>
                 <button type="submit">Add Task</button>
                 <h1>{task} {priority} {category}</h1>
@@ -28,25 +29,15 @@ export default function Taskform() {
                 <select value={priority} onChange={(e) => setPriority(e.target.value)}>
                     <option value="high">High</option>
                     <option value="medium">Medium</option>
-                    <option value="low">Low</option>
+                    <option value="low">low</option>
                 </select>
 
                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
                     <option value="general">General</option>
-                    <option value="work">Work</option>
+                    <option value="work">work</option>
                     <option value="personal">Personal</option>
                 </select>
             </div>
         </form>
     )
 }
-
-
-// Git init 
-// Git remote –v 
-// Git remote add origin url 
-// Git add . 
-// Git commit –m “message” 
-// Git branch 
-// Git branch –M main 
-// Git push origin main
